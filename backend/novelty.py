@@ -27,7 +27,24 @@ or {{"found": false}}
 {pages}"""
 
 
+tokens = 0
+
+
 def ask(prompt):
+    global tokens
+    for wait in (15, 30, 60):
+        try:
+            reply = ai.chat.completions.create(
+                model=MODEL,
+                temperature=0,
+                messages=[{"role": "user", "content": prompt}],
+                response_format={"type": "json_object"},
+            )
+            tokens += reply.usage.total_tokens
+            return json.loads(reply.choices[0].message.content)
+        except groq.RateLimitError:
+            time.sleep(wait)
+    raise RuntimeError("still rate limited after 3 tries")
     for wait in (15, 30, 60):
         try:
             reply = ai.chat.completions.create(

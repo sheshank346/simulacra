@@ -5,6 +5,7 @@ import time
 
 sys.path.insert(0, "backend")
 sys.stdout.reconfigure(encoding="utf-8")
+import novelty
 from novelty import check_novelty
 
 PATH = "eval/progress.json"
@@ -22,7 +23,7 @@ for item in ideas:
         break
     done[text] = {"expected": item["expected"], **r}
     json.dump(done, open(PATH, "w", encoding="utf-8"), indent=2)
-    print(r["status"], r.get("reason", ""), "-", text)
+    print(r["status"], r.get("reason", ""), "-", text, f"[{novelty.tokens} tokens]")
     time.sleep(10)
 
 rows = list(done.values())
