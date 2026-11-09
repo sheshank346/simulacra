@@ -1,11 +1,16 @@
 import re
 
+MIN_WORDS = 6
+
 
 def clean(text):
-    text = text.replace("\u2019", "'").replace("\u201c", '"').replace("\u201d", '"')
-    return re.sub(r"\s+", " ", text).lower().strip()
+    return " ".join(re.findall(r"[a-z0-9]+", text.lower()))
+
+
+def contains(needle, haystack):
+    n = clean(needle)
+    return bool(n) and f" {n} " in f" {clean(haystack)} "
 
 
 def verify_quote(quote, page_text):
-    q = clean(quote)
-    return bool(q) and q in clean(page_text)
+    return len(clean(quote).split()) >= MIN_WORDS and contains(quote, page_text)
