@@ -6,11 +6,13 @@ import time
 sys.path.insert(0, "backend")
 sys.stdout.reconfigure(encoding="utf-8")
 import novelty
+from gaps import MODEL
 from novelty import check_novelty
 
-PATH = "eval/progress.json"
+PATH = f"eval/progress-{MODEL.split('/')[-1]}.json"
 ideas = json.load(open("eval/ideas.json", encoding="utf-8"))
 done = json.load(open(PATH, encoding="utf-8")) if os.path.exists(PATH) else {}
+print("model:", MODEL)
 
 for item in ideas:
     text = item["idea"]

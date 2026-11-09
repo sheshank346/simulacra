@@ -221,3 +221,4 @@ __marimo__/
 out.txt
 eval/results.json
 eval/progress.json
+eval/progress-*.json
