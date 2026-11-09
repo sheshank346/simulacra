@@ -1,0 +1,22 @@
+[
+  {"idea": "an app to hail a car from your phone and pay in the app", "expected": "exists"},
+  {"idea": "a short-video app with an endless scrolling feed and music clips", "expected": "exists"},
+  {"idea": "a website to book short-term stays in people's homes", "expected": "exists"},
+  {"idea": "an app to order restaurant food for home delivery", "expected": "exists"},
+  {"idea": "a flashcard app that schedules reviews with spaced repetition", "expected": "exists"},
+  {"idea": "an app that identifies a song playing nearby", "expected": "exists"},
+  {"idea": "phone payments by scanning a QR code at shops", "expected": "exists"},
+  {"idea": "a language-learning app with short daily lessons and streaks", "expected": "exists"},
+  {"idea": "an app to split shared expenses among friends", "expected": "exists"},
+  {"idea": "a marketplace where freelancers sell small services to clients", "expected": "exists"},
+  {"idea": "a note-taking app where pages link to each other", "expected": "exists"},
+  {"idea": "an AI tool that transcribes meetings and writes summaries", "expected": "exists"},
+  {"idea": "a website to find and book doctor appointments", "expected": "exists"},
+  {"idea": "a price comparison site across online shops", "expected": "exists"},
+  {"idea": "a habit tracker with daily streaks", "expected": "exists"},
+  {"idea": "an interactive platform to learn coding with exercises", "expected": "exists"},
+  {"idea": "an AI chatbot that answers customer questions on a business website", "expected": "exists"},
+  {"idea": "an app to scan documents with the phone camera and save as PDF", "expected": "exists"},
+  {"idea": "a platform to hire home-service workers like plumbers and electricians", "expected": "exists"},
+  {"idea": "an AI tool that summarizes long YouTube videos", "expected": "exists"}
+]
