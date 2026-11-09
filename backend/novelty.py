@@ -61,7 +61,7 @@ def check_novelty(angle, idea):
 
     texts = [p["text"][:1500] for p in pages]
     listing = "\n\n".join(f"[{i}] {t}" for i, t in enumerate(texts, 1))
-    reason = "ai_found_nothing"
+    reason, rejected = "ai_found_nothing", ""
     try:
         out = ask(PROMPT.format(idea=angle["idea"], pages=listing))
         if out.get("found"):
@@ -78,6 +78,7 @@ def check_novelty(angle, idea):
                 }
             else:
                 reason = "quote_rejected"
+                rejected = f"page {out['page']}: {out['quote']}"
     except (ValueError, KeyError, TypeError, AttributeError):
         reason = "bad_reply"
-    return {"status": "none", "searched": len(pages), "reason": reason}
+    return {"status": "none", "searched": len(pages), "reason": reason, "rejected": rejected}
