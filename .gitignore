@@ -222,3 +222,4 @@ out.txt
 eval/results.json
 eval/progress.json
 eval/progress-*.json
+data/search_cache/
