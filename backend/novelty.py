@@ -44,6 +44,7 @@ tokens = 0
 
 def ask(prompt):
     global tokens
+    last = None
     for wait in (15, 30, 60):
         try:
             reply = ai.chat.completions.create(
@@ -54,11 +55,13 @@ def ask(prompt):
             )
             tokens += reply.usage.total_tokens
             return json.loads(reply.choices[0].message.content)
-        except groq.RateLimitError:
+        except groq.RateLimitError as e:
+            last = e
             time.sleep(wait)
-        except groq.BadRequestError:
+        except groq.BadRequestError as e:
+            last = e
             time.sleep(2)
-    raise RuntimeError("model call failed after 3 tries")
+    raise RuntimeError("model call failed after 3 tries: " + str(last)[:300])
 
 
 def clean_quote(text):
