@@ -44,6 +44,8 @@ def ask(prompt):
             return json.loads(reply.choices[0].message.content)
         except groq.RateLimitError:
             time.sleep(wait)
+        except groq.BadRequestError:
+            time.sleep(2)
     raise RuntimeError("still rate limited after 3 tries")
 
 
