@@ -19,13 +19,13 @@ Below are numbered web pages. Does any page say a product offers this feature?
 - "same": the product offers this feature as described.
 - "similar": the product offers something related but different.
 Give the product, a word-for-word quote from that page, and the page number.
+The quote must be one unbroken passage copied from a single place on the page, with no ellipsis and no joined pieces.
 For "similar", also say in one sentence how it differs.
 
 Reply as JSON: {{"found": true, "match": "same", "product": "...", "quote": "...", "page": 1, "difference": ""}}
 or {{"found": false}}
 
 {pages}"""
-
 
 tokens = 0
 
@@ -41,18 +41,6 @@ def ask(prompt):
                 response_format={"type": "json_object"},
             )
             tokens += reply.usage.total_tokens
-            return json.loads(reply.choices[0].message.content)
-        except groq.RateLimitError:
-            time.sleep(wait)
-    raise RuntimeError("still rate limited after 3 tries")
-    for wait in (15, 30, 60):
-        try:
-            reply = ai.chat.completions.create(
-                model=MODEL,
-                temperature=0,
-                messages=[{"role": "user", "content": prompt}],
-                response_format={"type": "json_object"},
-            )
             return json.loads(reply.choices[0].message.content)
         except groq.RateLimitError:
             time.sleep(wait)
@@ -82,20 +70,18 @@ def check_novelty(angle, idea):
     try:
         out = ask(PROMPT.format(idea=angle["idea"], pages=listing))
         if out.get("found"):
-            i = out["page"] - 1
-            if not 0 <= i < len(pages):
-                reason = "bad_page_number"
-            elif verify_quote(out["quote"], texts[i]):
+            quote = str(out.get("quote") or "")
+            hits = [j for j, t in enumerate(texts) if verify_quote(quote, t)]
+            if hits:
                 return {
                     "status": "same" if out.get("match") == "same" else "similar",
                     "product": out["product"],
-                    "quote": out["quote"],
-                    "url": pages[i]["url"],
+                    "quote": quote,
+                    "url": pages[hits[0]]["url"],
                     "difference": out.get("difference") or "",
                 }
-            else:
-                reason = "quote_rejected"
-                rejected = f"page {out['page']}: {out['quote']}"
+            reason = "quote_rejected"
+            rejected = f"page {out.get('page')}: {quote}"
     except (ValueError, KeyError, TypeError, AttributeError):
         reason = "bad_reply"
     return {"status": "none", "searched": len(pages), "reason": reason, "rejected": rejected}
