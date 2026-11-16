@@ -1,4 +1,5 @@
 import json
+import re
 import time
 
 import groq
@@ -27,6 +28,17 @@ or {{"found": false}}
 
 {pages}"""
 
+SUPPORT = """Feature: {feature}
+
+Quote from a web page about {product}:
+"{quote}"
+
+Does the quote itself say that {product} offers this feature?
+- "yes": the quote clearly says it.
+- "partly": the quote says something related, but not the whole feature.
+- "no": the quote does not say it.
+Reply as JSON: {{"answer": "yes"}}"""
+
 tokens = 0
 
 
@@ -46,7 +58,17 @@ def ask(prompt):
             time.sleep(wait)
         except groq.BadRequestError:
             time.sleep(2)
-    raise RuntimeError("still rate limited after 3 tries")
+    raise RuntimeError("model call failed after 3 tries")
+
+
+def clean_quote(text):
+    return re.sub(r"[*_#`]+", "", text).strip()
+
+
+def supports(feature, product, quote):
+    out = ask(SUPPORT.format(feature=feature, product=product, quote=quote))
+    answer = str(out.get("answer", "")).lower() if isinstance(out, dict) else ""
+    return answer if answer in ("yes", "partly", "no") else "partly"
 
 
 def check_novelty(angle, idea):
@@ -72,18 +94,25 @@ def check_novelty(angle, idea):
     try:
         out = ask(PROMPT.format(idea=angle["idea"], pages=listing))
         if out.get("found"):
-            quote = str(out.get("quote") or "")
+            quote = clean_quote(str(out.get("quote") or ""))
+            product = str(out.get("product") or "")
             hits = [j for j, t in enumerate(texts) if verify_quote(quote, t)]
-            if hits:
-                return {
-                    "status": "same" if out.get("match") == "same" else "similar",
-                    "product": out["product"],
-                    "quote": quote,
-                    "url": pages[hits[0]]["url"],
-                    "difference": out.get("difference") or "",
-                }
-            reason = "quote_rejected"
-            rejected = f"page {out.get('page')}: {quote}"
+            if not hits:
+                reason, rejected = "quote_rejected", f"page {out.get('page')}: {quote}"
+            else:
+                verdict = supports(angle["idea"], product, quote)
+                if verdict == "no":
+                    reason, rejected = "quote_does_not_support", quote
+                else:
+                    same = out.get("match") == "same" and verdict == "yes"
+                    return {
+                        "status": "same" if same else "similar",
+                        "product": product,
+                        "quote": quote,
+                        "url": pages[hits[0]]["url"],
+                        "difference": out.get("difference") or "",
+                        "support": verdict,
+                    }
     except (ValueError, KeyError, TypeError, AttributeError):
         reason = "bad_reply"
     return {"status": "none", "searched": len(pages), "reason": reason, "rejected": rejected}
