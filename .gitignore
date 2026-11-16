@@ -223,3 +223,4 @@ eval/results.json
 eval/progress.json
 eval/progress-*.json
 data/search_cache/
+eval/stability-*.json
