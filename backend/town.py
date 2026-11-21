@@ -7,6 +7,7 @@ import time
 sys.stdout.reconfigure(encoding="utf-8")
 from angles import propose_angles
 from competitors import find_competitors
+from dedupe import merge_duplicates
 from gaps import find_gaps
 from novelty import check_novelty
 from reactions import react
@@ -30,6 +31,7 @@ for name in find_competitors(idea):
                 seen.add(g["quote"])
                 gaps.append({**g, "product": name})
         time.sleep(6)
+gaps = merge_duplicates(gaps)
 print(f"{len(gaps)} verified complaints")
 
 angles = propose_angles(idea, gaps)
