@@ -27,6 +27,7 @@
 <canvas id="c" width="960" height="540"></canvas>
 <p id="summary"></p>
 <p id="changed"></p>
+<p id="basis" class="note"></p>
 <p class="key">
   <span><i class="sw" style="background:#2e9e5b"></i>support (smiling)</span>
   <span><i class="sw" style="background:#d64545"></i>oppose (frowning)</span>
@@ -34,6 +35,7 @@
 </p>
 <script>
 const people = __PEOPLE__;
+const gaps = __GAPS__;
 const W = 960, H = 540;
 const cv = document.getElementById("c");
 const ctx = cv.getContext("2d");
@@ -254,6 +256,9 @@ cv.addEventListener("click", e => {
     if (d < 30 && d < best) { best = d; hit = p; }
   });
   pinned = hit === pinned ? null : hit;
+  document.getElementById("basis").textContent = pinned
+    ? "Based on: " + pinned.cites.map(c => gaps[c - 1] ? gaps[c - 1].gap + " (" + gaps[c - 1].product + ")" : "").filter(Boolean).join("; ")
+    : "";
 });
 
 function setMode(m) {

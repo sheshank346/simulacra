@@ -1,3 +1,5 @@
+import re
+
 from novelty import ask
 
 STANCES = ("support", "oppose", "undecided")
@@ -11,7 +13,7 @@ Proposal A: the idea as it is.
 Proposal B: the idea changed like this: {title}. {angle}
 Proposal B fixes only complaints: {fixes}
 
-Invent {n} people in 3 groups whose interests conflict (for example buyers, sellers, and someone affected by the idea).
+Invent {n} people in 3 groups of people who would really use this idea or be directly affected by it, with interests that conflict.
 Each person reacts to both proposals and has one concrete constraint (budget, habit, trust, or time).
 Base reasons on the numbered complaints and do not invent new complaints.
 Write each reason as one plain first-person sentence in their own voice, without the words Proposal or complaint.
@@ -21,6 +23,10 @@ At least 4 people must still oppose or be undecided after Proposal B, for reason
 Reply as JSON: {{"people": [{{"name": "...", "group": "...", "profile": "...",
 "before": "support", "before_reason": "...", "after": "support", "after_reason": "...", "cites": [1]}}]}}
 Stances are support, oppose or undecided."""
+
+
+def tidy(text):
+    return re.sub(r"\s*\(\d+(?:,\s*\d+)*\)", "", str(text)).strip()
 
 
 def react(idea, gaps, angle, n=12):
@@ -43,9 +49,9 @@ def react(idea, gaps, angle, n=12):
             "group": str(p.get("group", "")),
             "profile": str(p.get("profile", "")),
             "before": p["before"],
-            "before_reason": str(p.get("before_reason", "")),
+            "before_reason": tidy(p.get("before_reason", "")),
             "after": after,
-            "after_reason": str(p.get("after_reason", "")),
+            "after_reason": tidy(p.get("after_reason", "")),
             "cites": cites,
         })
     return people
