@@ -224,3 +224,5 @@ eval/progress.json
 eval/progress-*.json
 data/search_cache/
 eval/stability-*.json
+data/map.html
+data/last_run.json
