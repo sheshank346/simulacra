@@ -20,6 +20,7 @@ Rules:
 - The quote must be a full sentence or clause of at least 6 words, written by a user or reviewer.
 - Skip troubleshooting tips, general advice, and remarks about the whole category.
 - Skip anything about a different product or an old version.
+- Skip statements of plain fact, such as dates or amounts paid, that do not say something went wrong.
 - If there are none, return an empty list.
 
 Reply as JSON: {{"gaps": [{{"gap": "...", "quote": "..."}}]}}

@@ -37,7 +37,7 @@ print(f"{len(gaps)} verified complaints")
 angles = propose_angles(idea, gaps)
 if not angles:
     sys.exit("No angle could be proposed from the complaints found.")
-angle = angles[0]
+angle = max(angles, key=lambda x: len(x["fixes"]))
 print("Angle:", angle["title"], "- fixes complaints", angle["fixes"])
 
 people = react(idea, gaps, angle)
