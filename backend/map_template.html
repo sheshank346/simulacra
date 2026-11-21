@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Simulated reactions</title>
+<style>
+  body { font-family: system-ui, sans-serif; margin: 1.5rem auto; max-width: 980px; padding: 0 1rem; color: #222; }
+  h1 { margin: 0 0 .25rem; }
+  .note { color: #555; margin: 0 0 1rem; }
+  .bar button { padding: .5rem 1rem; margin-right: .5rem; cursor: pointer; border: 1px solid #222; background: #fff; border-radius: 6px; }
+  .bar button.on { background: #222; color: #fff; }
+  canvas { width: 100%; height: auto; border: 1px solid #ccc; border-radius: 8px; margin-top: .75rem; display: block; background: #fff; }
+  #summary { margin: .75rem 0 0; font-weight: 600; }
+  #changed { margin: .25rem 0 0; color: #444; min-height: 1.4rem; }
+  .key span { display: inline-block; margin-right: 1rem; }
+  .sw { display: inline-block; width: 12px; height: 12px; border-radius: 3px; margin-right: 4px; vertical-align: -1px; }
+</style>
+</head>
+<body>
+<h1>How people might react</h1>
+<p class="note">Simulated reactions based on real complaints, not a poll. Click a person to pin what they say.</p>
+<div class="bar">
+  <button id="before" onclick="setMode('before')">Before: the idea as it is</button>
+  <button id="after" onclick="setMode('after')">After: __TITLE__</button>
+</div>
+<canvas id="c" width="960" height="540"></canvas>
+<p id="summary"></p>
+<p id="changed"></p>
+<p class="key">
+  <span><i class="sw" style="background:#2e9e5b"></i>support (smiling)</span>
+  <span><i class="sw" style="background:#d64545"></i>oppose (frowning)</span>
+  <span><i class="sw" style="background:#e0b020"></i>undecided (neutral)</span>
+</p>
+<script>
+const people = __PEOPLE__;
+const W = 960, H = 540;
+const cv = document.getElementById("c");
+const ctx = cv.getContext("2d");
+const COLORS = { support: [46, 158, 91], oppose: [214, 69, 69], undecided: [224, 176, 32] };
+const SKIN = ["#f1c9a5", "#d9a577", "#b97d52", "#8d5a3b"];
+const HAIR = ["#1b1b1b", "#3a2a1a", "#5a3b22", "#2b2b3a"];
+let mode = "before";
+let pinned = null;
+let bubbles = [];
+let nextSpeak = 800;
+
+const groups = [...new Set(people.map(p => p.group))];
+const tables = groups.map((g, gi) => ({ name: g, x: W * (gi + 1) / (groups.length + 1), y: 410, r: 60 }));
+
+tables.forEach(tb => {
+  const members = people.filter(p => p.group === tb.name);
+  tb.r = 42 + members.length * 4;
+  members.forEach((p, k) => {
+    const a = (Math.PI * 2 * k) / members.length + 0.4;
+    p.x = tb.x + Math.cos(a) * tb.r * 1.25;
+    p.y = tb.y + Math.sin(a) * tb.r * 0.5;
+  });
+});
+
+people.forEach((p, i) => {
+  p.seed = i * 1.7 + 0.3;
+  p.skin = SKIN[i % SKIN.length];
+  p.hair = HAIR[(i * 3) % HAIR.length];
+  p.col = COLORS[p.before].slice();
+});
+const order = people.slice().sort((a, b) => a.y - b.y);
+
+function rr(x, y, w, h, r) {
+  ctx.beginPath();
+  ctx.moveTo(x + r, y);
+  ctx.arcTo(x + w, y, x + w, y + h, r);
+  ctx.arcTo(x + w, y + h, x, y + h, r);
+  ctx.arcTo(x, y + h, x, y, r);
+  ctx.arcTo(x, y, x + w, y, r);
+  ctx.closePath();
+}
+
+const BUILDINGS = [[10, 95, 125, "#d8b48f"], [115, 80, 160, "#c9a07d"], [205, 110, 110, "#e0c3a0"],
+                   [690, 105, 150, "#d4a98a"], [805, 85, 120, "#caa488"], [880, 80, 165, "#dcb99a"]];
+
+function tree(x, y) {
+  ctx.fillStyle = "#7a5230";
+  ctx.fillRect(x - 5, y - 40, 10, 40);
+  ctx.fillStyle = "#4e9a52";
+  ctx.beginPath(); ctx.arc(x, y - 58, 28, 0, Math.PI * 2); ctx.fill();
+  ctx.beginPath(); ctx.arc(x - 18, y - 44, 20, 0, Math.PI * 2); ctx.fill();
+  ctx.beginPath(); ctx.arc(x + 18, y - 44, 20, 0, Math.PI * 2); ctx.fill();
+}
+
+function stall(t) {
+  const x = W / 2 - 75, y = 175;
+  ctx.fillStyle = "#8a5a35";
+  ctx.fillRect(x, y + 35, 150, 38);
+  ctx.fillStyle = "#a9703f";
+  ctx.fillRect(x, y + 35, 150, 8);
+  for (let i = 0; i < 10; i++) {
+    ctx.fillStyle = i % 2 ? "#ffffff" : "#d64545";
+    ctx.fillRect(x - 6 + i * 16, y, 16, 24);
+  }
+  ctx.fillStyle = "#555";
+  ctx.fillRect(x + 20, y + 22, 28, 14);
+  ctx.beginPath(); ctx.arc(x + 34, y + 22, 14, Math.PI, 0); ctx.fill();
+  ctx.fillStyle = "#fff"; ctx.font = "bold 13px system-ui, sans-serif"; ctx.textAlign = "center";
+  ctx.fillText("CHAI", x + 110, y + 60);
+  ctx.strokeStyle = "rgba(150,150,150,0.7)"; ctx.lineWidth = 2;
+  for (let i = 0; i < 3; i++) {
+    ctx.beginPath();
+    for (let s = 0; s <= 20; s++) {
+      const sx = x + 28 + i * 6 + Math.sin(t / 300 + s * 0.5 + i) * 3;
+      const sy = y + 18 - s;
+      if (s === 0) ctx.moveTo(sx, sy); else ctx.lineTo(sx, sy);
+    }
+    ctx.stroke();
+  }
+}function table(tb) {
+  ctx.fillStyle = "rgba(0,0,0,0.12)";
+  ctx.beginPath(); ctx.ellipse(tb.x, tb.y + 6, 40, 14, 0, 0, Math.PI * 2); ctx.fill();
+  ctx.fillStyle = "#9b6a3c";
+  ctx.beginPath(); ctx.ellipse(tb.x, tb.y, 36, 13, 0, 0, Math.PI * 2); ctx.fill();
+  ctx.fillStyle = "#fff";
+  ctx.beginPath(); ctx.arc(tb.x - 10, tb.y - 2, 4, 0, Math.PI * 2); ctx.fill();
+  ctx.beginPath(); ctx.arc(tb.x + 12, tb.y + 1, 4, 0, Math.PI * 2); ctx.fill();
+  ctx.font = "bold 13px system-ui, sans-serif";
+  const w = ctx.measureText(tb.name).width + 20;
+  const sy = tb.y + 70;
+  ctx.fillStyle = "#fff8e6"; ctx.strokeStyle = "#7a5230"; ctx.lineWidth = 2;
+  rr(tb.x - w / 2, sy, w, 24, 6); ctx.fill(); ctx.stroke();
+  ctx.fillStyle = "#3b2a1a"; ctx.textAlign = "center";
+  ctx.fillText(tb.name, tb.x, sy + 16);
+}
+
+function scene(t) {
+  const sky = ctx.createLinearGradient(0, 0, 0, 240);
+  sky.addColorStop(0, "#bfe3f5");
+  sky.addColorStop(1, "#f6efe0");
+  ctx.fillStyle = sky;
+  ctx.fillRect(0, 0, W, 240);
+  BUILDINGS.forEach(b => {
+    ctx.fillStyle = b[3];
+    ctx.fillRect(b[0], 240 - b[2], b[1], b[2]);
+    ctx.fillStyle = "#7f93a6";
+    for (let wy = 240 - b[2] + 12; wy < 215; wy += 26)
+      for (let wx = b[0] + 10; wx < b[0] + b[1] - 14; wx += 22)
+        ctx.fillRect(wx, wy, 10, 14);
+  });
+  ctx.fillStyle = "#cdbf9a";
+  ctx.fillRect(0, 240, W, H - 240);
+  ctx.strokeStyle = "rgba(120,100,70,0.25)";
+  ctx.lineWidth = 1;
+  for (let y = 270; y < H; y += 40) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke(); }
+  tree(40, 330);
+  tree(925, 330);
+  stall(t);
+  tables.forEach(table);
+}
+
+function person(p, t) {
+  const bob = Math.sin(t / 450 + p.seed) * 1.6;
+  if (mode === "after" && p.before !== p.after) {
+    const k = (t / 1100 + p.seed) % 1;
+    const c = COLORS[p.after];
+    ctx.strokeStyle = "rgba(" + c.join(",") + "," + (1 - k).toFixed(2) + ")";
+    ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.ellipse(p.x, p.y, 14 + k * 18, 6 + k * 8, 0, 0, Math.PI * 2); ctx.stroke();
+  }
+  ctx.fillStyle = "rgba(0,0,0,0.15)";
+  ctx.beginPath(); ctx.ellipse(p.x, p.y + 1, 13, 5, 0, 0, Math.PI * 2); ctx.fill();
+  ctx.fillStyle = "#2c3440";
+  ctx.fillRect(p.x - 7, p.y - 10, 5, 10);
+  ctx.fillRect(p.x + 2, p.y - 10, 5, 10);
+  ctx.fillStyle = "rgb(" + p.col.map(Math.round).join(",") + ")";
+  rr(p.x - 11, p.y - 32 + bob, 22, 24, 6); ctx.fill();
+  ctx.fillStyle = p.skin;
+  ctx.beginPath(); ctx.arc(p.x, p.y - 42 + bob, 9, 0, Math.PI * 2); ctx.fill();
+  ctx.fillStyle = p.hair;
+  ctx.beginPath(); ctx.arc(p.x, p.y - 44 + bob, 9, Math.PI, 0); ctx.fill();
+  ctx.fillStyle = "#222";
+  ctx.fillRect(p.x - 4, p.y - 43 + bob, 2, 2);
+  ctx.fillRect(p.x + 2, p.y - 43 + bob, 2, 2);
+  ctx.strokeStyle = "#222"; ctx.lineWidth = 1.4;
+  const my = p.y - 37 + bob;
+  ctx.beginPath();
+  if (p[mode] === "support") ctx.arc(p.x, my - 1, 3.5, 0.15 * Math.PI, 0.85 * Math.PI);
+  else if (p[mode] === "oppose") ctx.arc(p.x, my + 4, 3.5, 1.15 * Math.PI, 1.85 * Math.PI);
+  else { ctx.moveTo(p.x - 3, my + 1); ctx.lineTo(p.x + 3, my + 1); }
+  ctx.stroke();
+  ctx.fillStyle = "#3a3a3a"; ctx.font = "11px system-ui, sans-serif"; ctx.textAlign = "center";
+  ctx.fillText(p.name, p.x, p.y + 15);
+}
+
+function wrap(text, maxW) {
+  const words = text.split(" ");
+  const lines = [];
+  let line = "";
+  for (const w of words) {
+    const test = line ? line + " " + w : w;
+    if (ctx.measureText(test).width > maxW && line) { lines.push(line); line = w; }
+    else line = test;
+  }
+  if (line) lines.push(line);
+  return lines;
+}
+
+function bubble(p, text) {
+  ctx.font = "12px system-ui, sans-serif";
+  const lines = wrap(text, 190).slice(0, 5);
+  let w = 0;
+  lines.forEach(l => { w = Math.max(w, ctx.measureText(l).width); });
+  w = Math.max(w, ctx.measureText(p.name).width) + 20;
+  const h = lines.length * 16 + 28;
+  const bx = Math.min(Math.max(p.x - w / 2, 6), W - w - 6);
+  const by = Math.max(p.y - 64 - h, 4);
+  ctx.fillStyle = "#fff"; ctx.strokeStyle = "#333"; ctx.lineWidth = 1.5;
+  rr(bx, by, w, h, 8); ctx.fill(); ctx.stroke();
+  const tx = Math.min(Math.max(p.x, bx + 14), bx + w - 14);
+  ctx.beginPath();
+  ctx.moveTo(tx - 6, by + h); ctx.lineTo(tx, by + h + 8); ctx.lineTo(tx + 6, by + h);
+  ctx.fillStyle = "#fff"; ctx.fill();
+  ctx.textAlign = "left";
+  ctx.fillStyle = "#777"; ctx.font = "bold 11px system-ui, sans-serif";
+  ctx.fillText(p.name, bx + 10, by + 16);
+  ctx.fillStyle = "#222"; ctx.font = "12px system-ui, sans-serif";
+  lines.forEach((l, i) => ctx.fillText(l, bx + 10, by + 33 + i * 16));
+}
+
+function frame(t) {
+  ctx.clearRect(0, 0, W, H);
+  scene(t);
+  people.forEach(p => {
+    const target = COLORS[p[mode]];
+    for (let i = 0; i < 3; i++) p.col[i] += (target[i] - p.col[i]) * 0.12;
+  });
+  order.forEach(p => person(p, t));
+  if (t > nextSpeak) {
+    const p = people[Math.floor(Math.random() * people.length)];
+    bubbles.push({ p: p, until: t + 4600 });
+    if (bubbles.length > 1) bubbles.shift();
+    nextSpeak = t + 3600;
+  }
+  bubbles = bubbles.filter(b => b.until > t);
+  bubbles.forEach(b => { if (b.p !== pinned) bubble(b.p, b.p[mode + "_reason"]); });
+  if (pinned) bubble(pinned, pinned[mode + "_reason"]);
+  requestAnimationFrame(frame);
+}
+
+cv.addEventListener("click", e => {
+  const r = cv.getBoundingClientRect();
+  const x = (e.clientX - r.left) * W / r.width;
+  const y = (e.clientY - r.top) * H / r.height;
+  let hit = null, best = 1e9;
+  people.forEach(p => {
+    const d = Math.abs(x - p.x) + Math.abs(y - (p.y - 26));
+    if (d < 30 && d < best) { best = d; hit = p; }
+  });
+  pinned = hit === pinned ? null : hit;
+});
+
+function setMode(m) {
+  mode = m;
+  document.getElementById("before").className = m === "before" ? "on" : "";
+  document.getElementById("after").className = m === "after" ? "on" : "";
+  const n = { support: 0, oppose: 0, undecided: 0 };
+  people.forEach(p => { n[p[m]] += 1; });
+  document.getElementById("summary").textContent =
+    n.support + " support | " + n.oppose + " oppose | " + n.undecided + " undecided (simulated)";
+  const moved = people.filter(p => p.before !== p.after).map(p => p.name);
+  document.getElementById("changed").textContent = m === "after"
+    ? (moved.length ? moved.length + " changed their mind: " + moved.join(", ") : "Nobody changed their mind.")
+    : "";
+}
+
+setMode("before");
+requestAnimationFrame(frame);
+</script>
+</body>
+</html>
