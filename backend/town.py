@@ -8,7 +8,7 @@ sys.stdout.reconfigure(encoding="utf-8")
 from angles import propose_angles
 from competitors import find_competitors
 from dedupe import merge_duplicates
-from gaps import find_gaps
+from reviews import find_gaps_deep
 from novelty import check_novelty
 from reactions import react
 from search import search
@@ -26,13 +26,15 @@ if verdict["status"] != "none":
 gaps, seen = [], set()
 for name in find_competitors(idea):
     for page in search(f"{name} reviews complaints", n=3):
-        for g in find_gaps(idea, page, name):
+        for g in find_gaps_deep(idea, page, name):
             if g["quote"] not in seen:
                 seen.add(g["quote"])
                 gaps.append({**g, "product": name})
         time.sleep(6)
 gaps = merge_duplicates(gaps)
 print(f"{len(gaps)} verified complaints")
+import reviews
+print("Olostep credits used:", reviews.credits)
 
 angles = propose_angles(idea, gaps)
 if not angles:
