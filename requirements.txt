@@ -1,5 +1,6 @@
 tavily-python
 groq
 python-dotenv
-pyteststreamlit
+pytest
+streamlit
 olostep
