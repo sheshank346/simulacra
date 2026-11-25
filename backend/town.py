@@ -31,7 +31,14 @@ for name in find_competitors(idea):
                 seen.add(g["quote"])
                 gaps.append({**g, "product": name})
         time.sleep(6)
-gaps = merge_duplicates(gaps)
+PER_PRODUCT = 5
+kept, count = [], {}
+for g in gaps:
+    g["url"] = g["url"].replace("&amp%3B", "&").replace("&amp;", "&")
+    if count.get(g["product"], 0) < PER_PRODUCT:
+        count[g["product"]] = count.get(g["product"], 0) + 1
+        kept.append(g)
+gaps = merge_duplicates(kept)
 print(f"{len(gaps)} verified complaints")
 import reviews
 print("Olostep credits used:", reviews.credits)
