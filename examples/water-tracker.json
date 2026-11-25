@@ -1,0 +1,258 @@
+{
+  "idea": "an app to track my daily water intake",
+  "verdict": {
+    "status": "same",
+    "product": "WaterMinder",
+    "quote": "The Water Tracker App That Builds A Daily Habit",
+    "url": "https://waterminder.com",
+    "difference": "",
+    "support": "yes"
+  },
+  "gaps": [
+    {
+      "gap": "User cannot pay to remove ads because the app doesn\u2019t recognize their Google account password.",
+      "quote": "The app works fine, it very simple, but I can\u2019t manage to pay the 1\u20ac option to remove ads, the app asks me for my Google account password and doesn\u2019t recognise it when I give it \ud83e\udd37",
+      "url": "https://play.google.com/store/apps/details?id=com.funnmedia.waterminder&hl=en_US",
+      "product": "WaterMinder"
+    },
+    {
+      "gap": "Price increased to over five times the original cost.",
+      "quote": "Over five times how much it used to cost.",
+      "url": "https://www.youtube.com/watch?v=g-l-XlJViKo",
+      "product": "WaterMinder"
+    },
+    {
+      "gap": "Recommends a one\u2011time purchase alternative instead of this app.",
+      "quote": "I would now recommend an alternative application that is bought once if you find it instead of this one.",
+      "url": "https://www.youtube.com/watch?v=g-l-XlJViKo",
+      "product": "WaterMinder"
+    },
+    {
+      "gap": "The app lacks a camera/barcode scanning integration to automatically add drinks from bottle labels",
+      "quote": "I\u2019d like to see an integration into the camera where you could just scan the nutritional facts on the back of the bottle",
+      "url": "https://apps.apple.com/us/app/964748094?see-all=reviews&amp%3Bplatform=iphone",
+      "product": "My Water: Daily Drink Tracker App"
+    },
+    {
+      "gap": "The minimum age requirement of 14 is considered too high by some users",
+      "quote": "why can\u2019t it be a little younger",
+      "url": "https://apps.apple.com/us/app/964748094?see-all=reviews&amp%3Bplatform=iphone",
+      "product": "My Water: Daily Drink Tracker App"
+    },
+    {
+      "gap": "Only water, coffee, and tea can be logged for free; other drinks like smoothies require payment",
+      "quote": "When I try to put a smoothie on it, it says I have to pay for it",
+      "url": "https://apps.apple.com/us/app/964748094?see-all=reviews&amp%3Bplatform=iphone",
+      "product": "My Water: Daily Drink Tracker App"
+    },
+    {
+      "gap": "The app resets the user\u2019s weight to the default 107\u202flbs.",
+      "quote": "the app resets your weight to the default 107lbs!",
+      "url": "https://apps.apple.com/us/app/964748094?see-all=reviews&amp%3Bplatform=iphone",
+      "product": "My Water: Daily Drink Tracker App"
+    },
+    {
+      "gap": "Beverage choices are calculated incorrectly, misleading water content",
+      "quote": "But some of the different types of beverage choices can be misleading with how it calculates the water content.",
+      "url": "https://apps.apple.com/us/app/964748094?see-all=reviews&amp%3Bplatform=iphone",
+      "product": "My Water: Daily Drink Tracker App"
+    },
+    {
+      "gap": "The app lacks separate totals for fluid intake and water intake",
+      "quote": "I wish this app had both the total amount of fluid intake along with the total water intake.",
+      "url": "https://apps.apple.com/us/app/964748094?see-all=reviews&amp%3Bplatform=iphone",
+      "product": "My Water: Daily Drink Tracker App"
+    },
+    {
+      "gap": "Editing drink logs is cumbersome",
+      "quote": "Additionally, editing my log of drinks isn\u2019t as easy as it could be.",
+      "url": "https://apps.apple.com/us/app/964748094?see-all=reviews&amp%3Bplatform=iphone",
+      "product": "My Water: Daily Drink Tracker App"
+    },
+    {
+      "gap": "Changing a drink\u2019s volume requires deleting and re\u2011adding it",
+      "quote": "Sometimes I just want to edit a drink\u2019s volume but that would require having to delete it entirely and reentering the whole thing.",
+      "url": "https://apps.apple.com/us/app/964748094?see-all=reviews&amp%3Bplatform=iphone",
+      "product": "My Water: Daily Drink Tracker App"
+    },
+    {
+      "gap": "The app crashes on launch",
+      "quote": "Every time I try to open the app, it crashes and won\u2019t open.",
+      "url": "https://apps.apple.com/us/app/964748094?see-all=reviews&amp%3Bplatform=iphone",
+      "product": "My Water: Daily Drink Tracker App"
+    },
+    {
+      "gap": "Tracking wasn't working for a few days, causing disruption",
+      "quote": "The few days the tracking wasn't working was hugely disruptive to me.",
+      "url": "https://mywaterapp.me",
+      "product": "My Water: Daily Drink Tracker App"
+    },
+    {
+      "gap": "The app sometimes double tracks entries when using the quick/recent log buttons instead of the orange plus sign.",
+      "quote": "the only thing I don't like is sometimes it double tracks what you track namely when you use the quick/recent log buttons rather than the orange plus sign.",
+      "url": "https://play.google.com/store/apps/details?id=com.drink.water.reminder.alarm.tracker&hl=en",
+      "product": "Daily Water Tracker - Waterful"
+    },
+    {
+      "gap": "The app returns to the \"let's get started\" menu on each launch, resetting alarms and progress.",
+      "quote": "Installed on my new phone and every time I open it's on the 'let's get started' menu.",
+      "url": "https://play.google.com/store/apps/details?id=com.drink.water.reminder.alarm.tracker&hl=en",
+      "product": "Daily Water Tracker - Waterful"
+    }
+  ],
+  "angle": {
+    "title": "Robust editing & age\u2011flexible onboarding",
+    "idea": "Allow in\u2011place editing of logged drinks with an undo button and volume adjuster, and lower the minimum age to 13 with parental\u2011control options, addressing complaints 5,10,11.",
+    "fixes": [
+      5,
+      10,
+      11
+    ]
+  },
+  "people": [
+    {
+      "name": "Alex",
+      "group": "Fitness Enthusiasts",
+      "profile": "Limited budget",
+      "before": "oppose",
+      "before_reason": "I can't afford a pricey app, so I oppose it.",
+      "after": "oppose",
+      "after_reason": "My budget still won't allow me to pay for it.",
+      "cites": [
+        2
+      ]
+    },
+    {
+      "name": "Maya",
+      "group": "Fitness Enthusiasts",
+      "profile": "Needs quick editing habit",
+      "before": "oppose",
+      "before_reason": "Editing logs is a hassle, so I oppose it.",
+      "after": "support",
+      "after_reason": "In\u2011place editing and undo make it easy for me to track drinks.",
+      "cites": [
+        10
+      ]
+    },
+    {
+      "name": "Jordan",
+      "group": "Fitness Enthusiasts",
+      "profile": "Low trust in account handling",
+      "before": "oppose",
+      "before_reason": "The app doesn't recognize my Google password, so I oppose it.",
+      "after": "oppose",
+      "after_reason": "That issue remains, so I still oppose it.",
+      "cites": [
+        1
+      ]
+    },
+    {
+      "name": "Sam",
+      "group": "Fitness Enthusiasts",
+      "profile": "Limited time for logging",
+      "before": "oppose",
+      "before_reason": "Double\u2011tracking entries wastes my time, so I oppose it.",
+      "after": "oppose",
+      "after_reason": "The double\u2011track bug is still present, so I remain opposed.",
+      "cites": [
+        14
+      ]
+    },
+    {
+      "name": "Priya",
+      "group": "Parents",
+      "profile": "Habit of using apps with younger kids",
+      "before": "oppose",
+      "before_reason": "The minimum age of 14 is too high for my family, so I oppose it.",
+      "after": "support",
+      "after_reason": "Lowering the age to 13 lets my younger child use it safely.",
+      "cites": [
+        5
+      ]
+    },
+    {
+      "name": "Luis",
+      "group": "Parents",
+      "profile": "Tight budget for family apps",
+      "before": "oppose",
+      "before_reason": "Only water, coffee, and tea are free, so I oppose it.",
+      "after": "oppose",
+      "after_reason": "Paid drinks are still required, so I stay opposed.",
+      "cites": [
+        6
+      ]
+    },
+    {
+      "name": "Fatima",
+      "group": "Parents",
+      "profile": "Needs reliable weight tracking",
+      "before": "oppose",
+      "before_reason": "The app resets my weight to 107\u202flbs, so I oppose it.",
+      "after": "oppose",
+      "after_reason": "Weight reset still occurs, so I remain opposed.",
+      "cites": [
+        7
+      ]
+    },
+    {
+      "name": "Ethan",
+      "group": "Parents",
+      "profile": "Limited time due to work",
+      "before": "oppose",
+      "before_reason": "Frequent crashes waste my time, so I oppose it.",
+      "after": "oppose",
+      "after_reason": "Crashes still happen, so I stay opposed.",
+      "cites": [
+        12
+      ]
+    },
+    {
+      "name": "Zoe",
+      "group": "Students",
+      "profile": "Habit of adjusting drink volumes",
+      "before": "oppose",
+      "before_reason": "Changing a drink's volume forces deletion, so I oppose it.",
+      "after": "support",
+      "after_reason": "Now I can adjust volume directly, which fits my habit.",
+      "cites": [
+        11
+      ]
+    },
+    {
+      "name": "Carlos",
+      "group": "Students",
+      "profile": "Limited budget for apps",
+      "before": "oppose",
+      "before_reason": "The price jump makes it unaffordable, so I oppose it.",
+      "after": "oppose",
+      "after_reason": "The cost is still high, so I remain opposed.",
+      "cites": [
+        2
+      ]
+    },
+    {
+      "name": "Nina",
+      "group": "Students",
+      "profile": "Needs consistent progress tracking",
+      "before": "oppose",
+      "before_reason": "The app resets to the start menu each launch, so I oppose it.",
+      "after": "oppose",
+      "after_reason": "That reset issue persists, so I stay opposed.",
+      "cites": [
+        15
+      ]
+    },
+    {
+      "name": "Omar",
+      "group": "Students",
+      "profile": "Habit of monitoring water vs total fluids",
+      "before": "oppose",
+      "before_reason": "There are no separate totals for water and fluids, so I oppose it.",
+      "after": "oppose",
+      "after_reason": "Separate totals are still missing, so I remain opposed.",
+      "cites": [
+        9
+      ]
+    }
+  ]
+}

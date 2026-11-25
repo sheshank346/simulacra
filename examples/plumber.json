@@ -1,0 +1,311 @@
+{
+  "idea": "an app to find a reliable plumber in my neighbourhood",
+  "verdict": {
+    "status": "similar",
+    "product": "Thumbtack",
+    "quote": "Check out 42 plumbers in your area",
+    "url": "https://www.thumbtack.com/k/plumbers/near-me",
+    "difference": "",
+    "support": "partly"
+  },
+  "gaps": [
+    {
+      "gap": "Neighborly failed to follow up or contact the customer",
+      "quote": "There has been no further contact from Neighborly and certainly no contact with Aire Serv.",
+      "url": "https://www.pissedconsumer.com/neighborly/RT-F.html",
+      "product": "Neighborly: Book Home Services"
+    },
+    {
+      "gap": "The service did not fix the unit and staff appeared indifferent",
+      "quote": "The unit is not working and No one seems to care about me being the victim.",
+      "url": "https://www.pissedconsumer.com/neighborly/RT-F.html",
+      "product": "Neighborly: Book Home Services"
+    },
+    {
+      "gap": "Neighborly took no action to resolve issues, leading to a perceived bait-and-switch",
+      "quote": "so far horrible experience with Aire Serv as well as Neighborly has done nothing to help resolve my issues and being a victim of a possible bait and switch.",
+      "url": "https://www.pissedconsumer.com/neighborly/RT-F.html",
+      "product": "Neighborly: Book Home Services"
+    },
+    {
+      "gap": "The repair left physical damage (holes) and dubious equipment",
+      "quote": "I was left with holes in my ceilings and questionable equipment.",
+      "url": "https://www.pissedconsumer.com/neighborly/RT-F.html",
+      "product": "Neighborly: Book Home Services"
+    },
+    {
+      "gap": "The service allegedly destroyed the customer's home",
+      "quote": "Never ever use Aire Serv north wales they destroyed our home.",
+      "url": "https://www.pissedconsumer.com/neighborly/RT-F.html",
+      "product": "Neighborly: Book Home Services"
+    },
+    {
+      "gap": "The franchise closed, leaving the customer $350 out of pocket with no communication",
+      "quote": "Closed the franchise and left us out of pocket 350.00 zero communication with neighborly.",
+      "url": "https://www.pissedconsumer.com/neighborly/RT-F.html",
+      "product": "Neighborly: Book Home Services"
+    },
+    {
+      "gap": "Customer paid $350 for a diagnostic but the part never arrived",
+      "quote": "Paid $350 for diagnostic; part never arrived.",
+      "url": "https://www.pissedconsumer.com/neighborly/RT-F.html",
+      "product": "Neighborly: Book Home Services"
+    },
+    {
+      "gap": "The brand is rude and makes false complaints with old pictures.",
+      "quote": "Rude and levies false complaints supported with pictures 6months old",
+      "url": "https://www.comparably.com/brands/neighborly",
+      "product": "Neighborly: Book Home Services"
+    },
+    {
+      "gap": "Unable to log in or reach support by phone",
+      "quote": "I am not able to log on or phone call to you.",
+      "url": "https://networx-systems.pissedconsumer.com/review.html",
+      "product": "Networx"
+    },
+    {
+      "gap": "User wants to stop receiving leads and cancel membership",
+      "quote": "I want to not accept any further leads and want to cancel my membership.",
+      "url": "https://networx-systems.pissedconsumer.com/review.html",
+      "product": "Networx"
+    },
+    {
+      "gap": "User was dissatisfied with the selection of leads for their address",
+      "quote": "Was not happy with their selection of leads for our address",
+      "url": "https://networx-systems.pissedconsumer.com/review.html",
+      "product": "Networx"
+    },
+    {
+      "gap": "User did not sign up and found questionable claims immediately",
+      "quote": "I didnt even sign up with Networx I was just browsing their site and checking out what they offer.",
+      "url": "https://networx-systems.pissedconsumer.com/review.html",
+      "product": "Networx"
+    },
+    {
+      "gap": "Charged an extra $91 for a disputed lead.",
+      "quote": "I was later charged another $91 to my credit card for a disputed lead.",
+      "url": "https://www.bbb.org/us/ga/atlanta/profile/contractor-referral/networx-systems-inc-0443-27471935/complaints",
+      "product": "Networx"
+    },
+    {
+      "gap": "Refund was given as platform credit instead of returning to the card.",
+      "quote": "Networx returned the $91 only as platform credit, not to my card.",
+      "url": "https://www.bbb.org/us/ga/atlanta/profile/contractor-referral/networx-systems-inc-0443-27471935/complaints",
+      "product": "Networx"
+    },
+    {
+      "gap": "Representatives focused on how to contact prospects instead of verifying lead legitimacy.",
+      "quote": "Instead of addressing whether those leads were legitimate, representatives focused on instructing me how to contact prospects.",
+      "url": "https://www.bbb.org/us/ga/atlanta/profile/contractor-referral/networx-systems-inc-0443-27471935/complaints",
+      "product": "Networx"
+    },
+    {
+      "gap": "Customer service did not resolve the issue.",
+      "quote": "I call customer service but still the issue has not been solved",
+      "url": "https://thumbtack.pissedconsumer.com/review.html",
+      "product": "Thumbtack"
+    },
+    {
+      "gap": "The reviewer felt scammed and had to use a disposable card to stop billing.",
+      "quote": "I was scammed; service calls are 100+ miles away; I used a disposable card to stop billing.",
+      "url": "https://thumbtack.pissedconsumer.com/review.html",
+      "product": "Thumbtack"
+    },
+    {
+      "gap": "Service calls are coming from locations a hundred miles away or more.",
+      "quote": "Now I get service calls that are a hundred miles away or more.",
+      "url": "https://thumbtack.pissedconsumer.com/review.html",
+      "product": "Thumbtack"
+    },
+    {
+      "gap": "The reviewer, a long\u2011time copier engineer, says they have never been scammed like this before.",
+      "quote": "I have been a copier engineer for 27 years and have never been treated and scammed out of my money like this ever!!",
+      "url": "https://thumbtack.pissedconsumer.com/review.html",
+      "product": "Thumbtack"
+    },
+    {
+      "gap": "Users are charged for leads that do not generate opportunities.",
+      "quote": "Complaints on file indicate concerns about being charged for leads that fail to generate opportunities.",
+      "url": "https://www.bbb.org/us/ca/san-francisco/profile/internet-service/thumbtack-inc-1116-367066/complaints?page=56",
+      "product": "Thumbtack"
+    },
+    {
+      "gap": "The professional abandoned the job shortly before the user's wedding.",
+      "quote": "He abandoned the job just days before my wedding.",
+      "url": "https://www.bbb.org/us/ca/san-francisco/profile/internet-service/thumbtack-inc-1116-367066/complaints?page=56",
+      "product": "Thumbtack"
+    },
+    {
+      "gap": "The pro behaved aggressively and illegally dumped debris, prompting police involvement.",
+      "quote": "This led to him being aggressive and illegally dumping debris on my property, which led to police involvement.",
+      "url": "https://www.bbb.org/us/ca/san-francisco/profile/internet-service/thumbtack-inc-1116-367066/complaints?page=56",
+      "product": "Thumbtack"
+    },
+    {
+      "gap": "User complains that Thumbtack's advertised guarantees about pro quality were not met.",
+      "quote": "I am submitting this complaint regarding Thumbtack, Inc., based on their advertised guarantees about the quality of pros on their platform.",
+      "url": "https://www.bbb.org/us/ca/san-francisco/profile/internet-service/thumbtack-inc-1116-367066/complaints?page=56",
+      "product": "Thumbtack"
+    }
+  ],
+  "angle": {
+    "title": "Verified Local Plumbers with Real\u2011Time Scheduling and Direct Support",
+    "idea": "Only onboard plumbers who pass a background check and prove a physical local address, display real\u2011time availability, and provide in\u2011app chat/phone support staffed 24/7 to handle lead disputes, cancellations, and billing issues instantly.",
+    "fixes": [
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      18
+    ]
+  },
+  "people": [
+    {
+      "name": "Alice",
+      "group": "Homeowner",
+      "profile": "Budget\u2011conscious homeowner",
+      "before": "support",
+      "before_reason": "I want a reliable plumber because I've been burned by services that never followed up.",
+      "after": "support",
+      "after_reason": "The app's real\u2011time scheduling would stop the no\u2011follow\u2011up problem I faced.",
+      "cites": [
+        1
+      ]
+    },
+    {
+      "name": "Bob",
+      "group": "Homeowner",
+      "profile": "Trust\u2011focused homeowner",
+      "before": "oppose",
+      "before_reason": "I fear another service will destroy my home like the one that left damage.",
+      "after": "oppose",
+      "after_reason": "Since the new app doesn't address physical damage from repairs, my concern remains.",
+      "cites": [
+        5
+      ]
+    },
+    {
+      "name": "Carol",
+      "group": "Homeowner",
+      "profile": "Time\u2011pressed homeowner",
+      "before": "undecided",
+      "before_reason": "I'm unsure because a franchise closed on me with no communication.",
+      "after": "undecided",
+      "after_reason": "The app doesn't solve the issue of a provider disappearing without notice.",
+      "cites": [
+        6
+      ]
+    },
+    {
+      "name": "Dave",
+      "group": "Homeowner",
+      "profile": "Budget\u2011tight homeowner",
+      "before": "oppose",
+      "before_reason": "I was charged an extra $91 for a disputed lead and I won't trust another platform.",
+      "after": "support",
+      "after_reason": "Instant dispute handling and clear billing would prevent hidden fees like the $91 charge.",
+      "cites": [
+        13
+      ]
+    },
+    {
+      "name": "Ethan",
+      "group": "Plumber",
+      "profile": "Trust\u2011oriented plumber",
+      "before": "oppose",
+      "before_reason": "Leads were verified poorly, so I worry about wasting time on fake requests.",
+      "after": "support",
+      "after_reason": "The app verifies lead legitimacy before I commit, fixing that problem.",
+      "cites": [
+        15
+      ]
+    },
+    {
+      "name": "Fiona",
+      "group": "Plumber",
+      "profile": "Budget\u2011focused plumber",
+      "before": "oppose",
+      "before_reason": "I couldn't log in or reach support, making it impossible to manage my jobs.",
+      "after": "support",
+      "after_reason": "24/7 in\u2011app chat ensures I can always access support and stay on schedule.",
+      "cites": [
+        9
+      ]
+    },
+    {
+      "name": "George",
+      "group": "Plumber",
+      "profile": "Habit\u2011driven plumber",
+      "before": "support",
+      "before_reason": "I want a platform that actually fixes units, unlike services that leave problems unresolved.",
+      "after": "support",
+      "after_reason": "A vetted network of pros will protect my reputation by ensuring jobs are completed correctly.",
+      "cites": [
+        2
+      ]
+    },
+    {
+      "name": "Hannah",
+      "group": "Plumber",
+      "profile": "Time\u2011constrained plumber",
+      "before": "undecided",
+      "before_reason": "I get calls for jobs hundreds of miles away, which wastes my day.",
+      "after": "support",
+      "after_reason": "Real\u2011time local scheduling guarantees I only receive nearby jobs.",
+      "cites": [
+        18
+      ]
+    },
+    {
+      "name": "Maya",
+      "group": "Homeowner",
+      "profile": "New homeowner in a suburb looking for reliable repairs",
+      "before": "oppose",
+      "before_reason": "I cannot trust a service that left holes in my wall and damaged my home.",
+      "after": "oppose",
+      "after_reason": "I cannot trust a service that left holes in my wall and damaged my home.",
+      "cites": [
+        4
+      ]
+    },
+    {
+      "name": "Luis",
+      "group": "Homeowner",
+      "profile": "Renter who depends on prompt follow\u2011up after a plumbing call",
+      "before": "oppose",
+      "before_reason": "I am wary because a previous plumber never followed up after the appointment.",
+      "after": "oppose",
+      "after_reason": "I am wary because a previous plumber never followed up after the appointment.",
+      "cites": [
+        1
+      ]
+    },
+    {
+      "name": "Priya",
+      "group": "Plumber",
+      "profile": "Independent plumber concerned about fair compensation for leads",
+      "before": "oppose",
+      "before_reason": "I am concerned that platforms charge for leads that never turn into jobs.",
+      "after": "oppose",
+      "after_reason": "I am concerned that platforms charge for leads that never turn into jobs.",
+      "cites": [
+        20
+      ]
+    },
+    {
+      "name": "Samir",
+      "group": "Neighborhood Association",
+      "profile": "HOA chair responsible for vetting contractors for the community",
+      "before": "oppose",
+      "before_reason": "I have seen contractors abandon jobs right before important events, which makes me doubt any lead service.",
+      "after": "oppose",
+      "after_reason": "I have seen contractors abandon jobs right before important events, which makes me doubt any lead service.",
+      "cites": [
+        21
+      ]
+    }
+  ]
+}

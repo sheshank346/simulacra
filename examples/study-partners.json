@@ -1,0 +1,196 @@
+{
+  "idea": "an app to find study partners in college",
+  "verdict": {
+    "status": "same",
+    "product": "Virtual Study Buddy",
+    "quote": "Matches students with peers or tutors based on GPA, subjects, study style, and availability",
+    "url": "https://www.youtube.com/watch?v=pcX1z9DNBuA",
+    "difference": "",
+    "support": "yes"
+  },
+  "gaps": [
+    {
+      "gap": "The app forces users to repeatedly reopen it because it closes on its own.",
+      "quote": "To refresh it , I have to open it again and again.",
+      "url": "https://play.google.com/store/apps/details?id=live.studystream.app&hl=en-US",
+      "product": "StudyStream"
+    },
+    {
+      "gap": "Free users are limited to only one hour of study time without a subscription, despite earlier longer access.",
+      "quote": "they could only study for one hour without subscription.",
+      "url": "https://play.google.com/store/apps/details?id=live.studystream.app&hl=en-US",
+      "product": "StudyStream"
+    },
+    {
+      "gap": "After an initial period, the free version restricts focus\u2011room usage to a maximum of one hour, reducing its usefulness.",
+      "quote": "After 5 days, it does not allows me to be in focus room more than 1 hour.",
+      "url": "https://play.google.com/store/apps/details?id=live.studystream.app&hl=en-US",
+      "product": "StudyStream"
+    },
+    {
+      "gap": "Cannot see following/follower list on mobile app, making it hard to check which friends are online",
+      "quote": "You can\u2019t see your following/follower on the mobile app.",
+      "url": "https://apps.apple.com/us/app/studystream/id6461722416",
+      "product": "StudyStream"
+    },
+    {
+      "gap": "All participants are muted when many people are on camera",
+      "quote": "The only downside is because so many people are on camera at once everyone is muted.",
+      "url": "https://apps.apple.com/us/app/studystream/id6461722416",
+      "product": "StudyStream"
+    }
+  ],
+  "angle": {
+    "title": "Persistent Session Engine",
+    "idea": "Implement a native background service that keeps the study rooms alive and automatically restores the last session when the app is reopened, eliminating forced closures.",
+    "fixes": [
+      1
+    ]
+  },
+  "people": [
+    {
+      "name": "Alice",
+      "group": "students",
+      "profile": "College sophomore on a tight budget",
+      "before": "oppose",
+      "before_reason": "I am upset that free users are limited to only one hour of study time, which doesn't fit my budget.",
+      "after": "oppose",
+      "after_reason": "I remain concerned that the free hour limit restricts my ability to study within my budget.",
+      "cites": [
+        2
+      ]
+    },
+    {
+      "name": "Bob",
+      "group": "students",
+      "profile": "Junior who relies on uninterrupted study sessions",
+      "before": "oppose",
+      "before_reason": "The app closing on its own forces me to reopen it repeatedly, breaking my study flow.",
+      "after": "support",
+      "after_reason": "With a persistent session engine, the app will stay open, so I can keep studying without interruption.",
+      "cites": [
+        1
+      ]
+    },
+    {
+      "name": "Carol",
+      "group": "students",
+      "profile": "Senior who values active discussion",
+      "before": "undecided",
+      "before_reason": "When many people are on camera, everyone is muted, preventing me from discussing problems.",
+      "after": "undecided",
+      "after_reason": "When many people are on camera, everyone is muted, preventing me from discussing problems.",
+      "cites": [
+        5
+      ]
+    },
+    {
+      "name": "Dave",
+      "group": "students",
+      "profile": "Freshman with limited daily study time",
+      "before": "oppose",
+      "before_reason": "After the initial period, the free version limits focus\u2011room usage to one hour, which doesn't match my available study time.",
+      "after": "oppose",
+      "after_reason": "After the initial period, the free version limits focus\u2011room usage to one hour, which doesn't match my available study time.",
+      "cites": [
+        3
+      ]
+    },
+    {
+      "name": "Emma",
+      "group": "administrators",
+      "profile": "Campus IT admin with a constrained budget",
+      "before": "undecided",
+      "before_reason": "I cannot see the following/follower list on mobile, making it hard to know which students are online.",
+      "after": "undecided",
+      "after_reason": "I cannot see the following/follower list on mobile, making it hard to know which students are online.",
+      "cites": [
+        4
+      ]
+    },
+    {
+      "name": "Frank",
+      "group": "administrators",
+      "profile": "Dean who needs to monitor rooms efficiently",
+      "before": "oppose",
+      "before_reason": "All participants are muted when many people are on camera, so I can't monitor rooms effectively.",
+      "after": "oppose",
+      "after_reason": "All participants are muted when many people are on camera, so I can't monitor rooms effectively.",
+      "cites": [
+        5
+      ]
+    },
+    {
+      "name": "Grace",
+      "group": "administrators",
+      "profile": "Director who values reliable platform performance",
+      "before": "oppose",
+      "before_reason": "The app closing on its own disrupts my ability to oversee study sessions.",
+      "after": "support",
+      "after_reason": "The persistent session engine will keep rooms alive, allowing me to manage sessions without interruptions.",
+      "cites": [
+        1
+      ]
+    },
+    {
+      "name": "Henry",
+      "group": "administrators",
+      "profile": "Scheduler who needs quick check\u2011ins",
+      "before": "undecided",
+      "before_reason": "The free version restricts focus\u2011room usage to one hour, which doesn't fit my schedule for quick check\u2011ins.",
+      "after": "undecided",
+      "after_reason": "The free version restricts focus\u2011room usage to one hour, which doesn't fit my schedule for quick check\u2011ins.",
+      "cites": [
+        3
+      ]
+    },
+    {
+      "name": "Irene",
+      "group": "investors",
+      "profile": "Angel investor focused on ROI",
+      "before": "oppose",
+      "before_reason": "Free users are limited to one hour of study time, which could reduce user retention and affect my investment returns.",
+      "after": "oppose",
+      "after_reason": "Free users are limited to one hour of study time, which could reduce user retention and affect my investment returns.",
+      "cites": [
+        2
+      ]
+    },
+    {
+      "name": "Jack",
+      "group": "investors",
+      "profile": "Venture capitalist who values platform stability",
+      "before": "oppose",
+      "before_reason": "The app closing on its own forces me to reopen it, which wastes my time and reduces platform reliability.",
+      "after": "support",
+      "after_reason": "With the new background service, the app stays open, so I can rely on it for continuous study sessions.",
+      "cites": [
+        1
+      ]
+    },
+    {
+      "name": "Karen",
+      "group": "investors",
+      "profile": "Seed funder concerned about trust in technology",
+      "before": "undecided",
+      "before_reason": "I am hesitant because the app often closes on its own, raising concerns about its stability.",
+      "after": "support",
+      "after_reason": "Since the persistent session engine prevents forced closures, I feel more confident in the app's reliability.",
+      "cites": [
+        1
+      ]
+    },
+    {
+      "name": "Leo",
+      "group": "investors",
+      "profile": "Strategic investor tracking user engagement metrics",
+      "before": "oppose",
+      "before_reason": "Not being able to see the following/follower list on mobile makes it difficult to track engagement, which worries me about user activity metrics.",
+      "after": "oppose",
+      "after_reason": "Not being able to see the following/follower list on mobile makes it difficult to track engagement, which worries me about user activity metrics.",
+      "cites": [
+        4
+      ]
+    }
+  ]
+}
