@@ -12,5 +12,5 @@ def contains(needle, haystack):
     return bool(n) and f" {n} " in f" {clean(haystack)} "
 
 
-def verify_quote(quote, page_text):
-    return len(clean(quote).split()) >= MIN_WORDS and contains(quote, page_text)
+def verify_quote(quote, page_text, min_words=MIN_WORDS):
+    return len(clean(quote).split()) >= min_words and contains(quote, page_text)

@@ -21,6 +21,7 @@ Below are numbered web pages. Does any page say a product offers this feature?
 - "similar": the product offers something related but different.
 Give the product, a word-for-word quote from that page, and the page number.
 The quote must be one unbroken passage copied from a single place on the page, with no ellipsis and no joined pieces.
+Prefer a full sentence over a page title.
 For "similar", also say in one sentence how it differs.
 
 Reply as JSON: {{"found": true, "match": "same", "product": "...", "quote": "...", "page": 1, "difference": ""}}
@@ -64,6 +65,21 @@ def ask(prompt):
     raise RuntimeError("model call failed after 3 tries: " + str(last)[:300])
 
 
+RETRY = """Feature: {feature}
+
+Text from a web page about {product}:
+{text}
+
+Copy, word for word, one sentence from this text that shows {product} offers this feature.
+If no sentence does, reply {{"quote": ""}}.
+Reply as JSON: {{"quote": "..."}}"""
+
+
+def recopy(feature, product, text):
+    out = ask(RETRY.format(feature=feature, product=product, text=text))
+    return clean_quote(str(out.get("quote") or "")) if isinstance(out, dict) else ""
+
+
 def clean_quote(text):
     return re.sub(r"[*_#`]+", "", text).strip()
 
@@ -99,7 +115,16 @@ def check_novelty(angle, idea):
         if out.get("found"):
             quote = clean_quote(str(out.get("quote") or ""))
             product = str(out.get("product") or "")
-            hits = [j for j, t in enumerate(texts) if verify_quote(quote, t)]
+            hits = [j for j, t in enumerate(texts) if verify_quote(quote, t, min_words=4)]
+            if not hits:
+                try:
+                    j = int(out.get("page")) - 1
+                except (TypeError, ValueError):
+                    j = -1
+                if 0 <= j < len(texts):
+                    again = recopy(angle["idea"], product, texts[j])
+                    if again and verify_quote(again, texts[j], min_words=4):
+                        quote, hits = again, [j]
             if not hits:
                 reason, rejected = "quote_rejected", f"page {out.get('page')}: {quote}"
             else:

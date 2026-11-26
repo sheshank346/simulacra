@@ -42,3 +42,6 @@ def test_short_fragment_fails():
 
 def test_contains_allows_short_names():
     assert contains("English", PAGE)
+
+def test_lower_minimum_allowed():
+    assert verify_quote("only in English", PAGE, min_words=3)
