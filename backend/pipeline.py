@@ -49,7 +49,8 @@ def run(idea, progress=print):
     progress("Proposing an angle")
     angles = propose_angles(idea, gaps)
     if not angles:
-        raise PipelineError("No angle could be proposed from the complaints found.")
+        return {"idea": idea, "verdict": verdict, "gaps": gaps, "angle": None,
+                "people": [], "olostep_credits": reviews.credits}
     angle = max(angles, key=lambda x: len(x["fixes"]))
 
     progress("Simulating how people might react")

@@ -56,7 +56,7 @@ def page_for(run):
     return template.replace("__GAPS__", gaps).replace("__PEOPLE__", people).replace("__TITLE__", title)
 
 
-def show(run):
+def show(run, where):
     v = run["verdict"]
     st.subheader(LABELS[v["status"]])
     if v["status"] == "none":
@@ -70,11 +70,16 @@ def show(run):
     for i, g in enumerate(run["gaps"], 1):
         st.markdown(safe(f'{i}. **{g["product"]}**: {g["gap"]}  \n"{g["quote"]}" ([source]({g["url"]}))'))
     angle = run["angle"]
+    if angle is None:
+        st.warning(f'Only {len(run["gaps"])} verified complaints were found, which was not enough to suggest an angle.')
+        return
     st.subheader("Suggested angle")
     st.write(safe(f'**{angle["title"]}**: {angle["idea"]}'))
     st.write("Fixes complaints:", ", ".join(str(n) for n in angle["fixes"]))
     st.subheader("How people might react")
     st.iframe(page_for(run), height=950)
+    st.download_button("Download this result", json.dumps(run, indent=2),
+                       file_name="simulacra-run.json", key="dl-" + where, on_click="ignore")
 
 
 st.set_page_config(page_title="Simulacra", layout="wide")
@@ -95,7 +100,7 @@ with live:
             st.error(problem)
         elif key in store()["results"]:
             st.info("Someone already ran this idea today, so this is the saved result.")
-            show(store()["results"][key])
+            show(store()["results"][key], "live")
         elif runs_left() <= 0:
             st.warning("The daily limit of live runs has been reached. See the saved examples tab.")
         else:
@@ -107,7 +112,7 @@ with live:
                     result = pipeline.run(full, progress=lambda m: (status.update(label=m), st.write(m)))
                     status.update(label="Done", state="complete")
                 store()["results"][key] = result
-                show(result)
+                show(result, "live")
             except Exception as e:
                 if e.__class__.__name__ == "PipelineError":
                     st.error(str(e))
@@ -121,4 +126,4 @@ with saved:
     for path in sorted(glob.glob("examples/*.json")):
         run = json.load(open(path, encoding="utf-8"))
         runs[run["idea"]] = run
-    show(runs[st.selectbox("Idea", list(runs))])
+    show(runs[st.selectbox("Idea", list(runs))], "saved")

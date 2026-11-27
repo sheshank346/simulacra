@@ -18,6 +18,8 @@ if v["status"] != "none":
     print(f"{v['product']}: \"{v['quote']}\"\n{v['url']}")
 print(f"{len(result['gaps'])} verified complaints")
 print("Olostep credits used:", result["olostep_credits"])
+if result["angle"] is None:
+    sys.exit("No angle could be proposed from the complaints found.")
 print("Angle:", result["angle"]["title"], "- fixes complaints", result["angle"]["fixes"])
 
 os.makedirs("data", exist_ok=True)
