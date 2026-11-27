@@ -46,4 +46,5 @@ def find_gaps(idea, page, product):
         {**g, "url": page["url"]}
         for g in items
         if verify_quote(str(g.get("quote") or ""), text)
+        and not str(g.get("quote")).rstrip().endswith(("...", "\u2026"))
     ]
