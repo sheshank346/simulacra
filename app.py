@@ -17,6 +17,18 @@ for key in ("TAVILY_API_KEY", "GROQ_API_KEY", "OLOSTEP_API_KEY", "GROQ_MODEL"):
 
 LABELS = {"same": "EXISTS", "similar": "SIMILAR IDEA EXISTS", "none": "NO CLOSE MATCH FOUND"}
 DAILY_RUNS = 3
+COUNTRIES = ["India", "United States", "United Kingdom", "Canada", "Australia",
+             "Singapore", "United Arab Emirates", "Anywhere"]
+STATES = [
+    "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh", "Goa",
+    "Gujarat", "Haryana", "Himachal Pradesh", "Jharkhand", "Karnataka", "Kerala",
+    "Madhya Pradesh", "Maharashtra", "Manipur", "Meghalaya", "Mizoram", "Nagaland",
+    "Odisha", "Punjab", "Rajasthan", "Sikkim", "Tamil Nadu", "Telangana", "Tripura",
+    "Uttar Pradesh", "Uttarakhand", "West Bengal",
+    "Andaman and Nicobar Islands", "Chandigarh",
+    "Dadra and Nagar Haveli and Daman and Diu", "Delhi", "Jammu and Kashmir",
+    "Ladakh", "Lakshadweep", "Puducherry",
+]
 BLOCKED = ["make a bomb", "build a bomb", "write ransomware", "build malware",
            "phishing page", "hack into", "counterfeit money", "stalk someone"]
 
@@ -71,7 +83,7 @@ def show(run, where):
         st.markdown(safe(f'{i}. **{g["product"]}**: {g["gap"]}  \n"{g["quote"]}" ([source]({g["url"]}))'))
     angle = run["angle"]
     if angle is None:
-        st.warning(f'Only {len(run["gaps"])} verified complaints were found, which was not enough to suggest an angle.')
+        st.warning("No verified complaints were found for this idea and place. Try a broader place or a more common idea." if not run["gaps"] else f'Only {len(run["gaps"])} verified complaints were found, which was not enough to suggest an angle.')
         return
     st.subheader("Suggested angle")
     st.write(safe(f'**{angle["title"]}**: {angle["idea"]}'))
@@ -90,7 +102,13 @@ live, saved = st.tabs(["Try your idea", "Saved examples"])
 
 with live:
     idea = st.text_input("Describe your idea", placeholder="an app to ...").strip()
-    region = st.text_input("Where? (optional)", value="India").strip()
+    country = st.selectbox("Country", COUNTRIES)
+    state = st.selectbox("State", ["Any"] + STATES) if country == "India" else "Any"
+    district = st.text_input("District or city (optional)", max_chars=60).strip()
+    region = ", ".join(x for x in (district, "" if state == "Any" else state,
+                                   "" if country == "Anywhere" else country) if x)
+    if idea:
+        st.caption("Search wording: " + (f"{idea} in {region}" if region else idea))
     slot = st.empty()
     if st.button("Run"):
         full = f"{idea} in {region}" if region else idea
