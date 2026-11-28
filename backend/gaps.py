@@ -21,6 +21,7 @@ Rules:
 - Skip troubleshooting tips, general advice, and remarks about the whole category.
 - Skip anything about a different product or an old version.
 - Skip statements of plain fact, such as dates or amounts paid, that do not say something went wrong.
+- Skip star ratings and remarks that do not describe a specific problem.
 - If there are none, return an empty list.
 
 Reply as JSON: {{"gaps": [{{"gap": "...", "quote": "..."}}]}}

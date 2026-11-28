@@ -28,7 +28,11 @@ def run(idea, progress=print):
 
     progress("Finding competitors")
     gaps, seen = [], set()
-    for name in find_competitors(idea):
+    names = find_competitors(idea)
+    best = verdict.get("product")
+    if best and not any(best.lower() in n.lower() or n.lower() in best.lower() for n in names):
+        names.insert(0, best)
+    for name in names[:3]:
         progress(f"Reading reviews of {name}")
         for page in search(f"{name} reviews complaints", n=3):
             for g in find_gaps_deep(idea, page, name):
