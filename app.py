@@ -84,6 +84,9 @@ def show(run, where):
     angle = run["angle"]
     if angle is None:
         st.warning("No verified complaints were found for this idea and place. Try a broader place or a more common idea." if not run["gaps"] else f'Only {len(run["gaps"])} verified complaints were found, which was not enough to suggest an angle.')
+        st.subheader("How people might react")
+        st.info("Reactions are built from verified complaints and a suggested angle. "
+                "Without them, the app does not make reactions up.")
         return
     st.subheader("Suggested angle")
     st.write(safe(f'**{angle["title"]}**: {angle["idea"]}'))
